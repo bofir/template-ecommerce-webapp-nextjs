@@ -1,0 +1,22 @@
+{
+  "common": {
+    "homepage": "Homepage",
+    "logoImageAltText": "Logo",
+    "aboutUs": "Starbien bla bla bla",
+    "description1": "Fundada en 1984 por la diseñadora Chantelle West, siempre hemos creído en el poder delos bienes hechos localmente.",
+    "description2": "La calidad de la confección y los artesanos locales que empleamos es lo que hace a Luxette nuestra misión en la vida.",
+    "poweredBy": "Potenciado por ",
+    "regionalSettings": "Configuración regional",
+    "language": "Idioma"
+  },
+  "product": {
+    "trendingProducts": "Tendencia ahora",
+    "relatedProducts": "Podría interesarte también",
+    "addToCart": "Agregar al carro",
+    "quantity": "Cantidad"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "Parece que esta página no existe. <0>Clic acá</0> para volver a la página principal."
+  }
+}
