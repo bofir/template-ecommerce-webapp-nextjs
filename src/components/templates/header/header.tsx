@@ -2,8 +2,8 @@ import { Box, BoxProps, Flex } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 
-import MobileLogo from '@icons/bonelli-mobile.svg';
-import DesktopLogo from '@icons/bonelli.svg';
+import MobileLogo from '@icons/starbien.svg';
+import DesktopLogo from '@icons/starbien.svg';
 import { LanguageSelector } from '@src/components/features/language-selector';
 
 export const HEADER_HEIGHT = 60;
