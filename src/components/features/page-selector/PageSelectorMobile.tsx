@@ -11,7 +11,6 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { ListBulletedIcon } from '@contentful/f36-icons';
-import { Link }  from 'next/link'
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
