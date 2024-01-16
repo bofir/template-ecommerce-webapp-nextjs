@@ -90,7 +90,7 @@ export const HeroBanner = ({
         gridColumnStart={2}
         zIndex={0}
         gridArea={{ base: '1 / 1 / 2 / 2' }}
-        maxHeight={{ base: '50vh', lg: '80vh' }}>
+        maxHeight={{ base: '100vh', lg: '100vh' }}>
         {heroBannerImage?.url && (
           <CtfImage
             imageProps={{
@@ -107,7 +107,8 @@ export const HeroBanner = ({
         gridArea={{ base: '1 / 1 / 2 / 2' }}
         overflow="hidden"
         justifyContent="flex-end"
-        maxHeight={{ base: '50vh', lg: '80vh' }}>
+        maxHeight={{ base: '100vh', lg: '100vh' }}>
+{/*
         <Container ref={containerRef}>
           <motion.div
             initial={false}
@@ -122,13 +123,11 @@ export const HeroBanner = ({
               color={heroBannerHeadlineColor || 'white'}
               transform="translateY(0.33em)"
               whiteSpace="nowrap">
-              {/* Tutorial: contentful-and-the-starter-template.md
-              {/* Uncomment the line below to render the Greeting field value */}
-              {/* {greeting} {' '} */}
               {heroBannerHeadline}
             </Heading>
           </motion.div>
         </Container>
+*/}
       </Flex>
     </Grid>
   );
