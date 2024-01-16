@@ -5,6 +5,7 @@ import Link from 'next/link';
 import MobileLogo from '@icons/starbien-mobile.svg';
 import DesktopLogo from '@icons/starbien.svg';
 import { LanguageSelector } from '@src/components/features/language-selector';
+import { PageSelector } from '@src/components/features/page-selector';
 
 export const HEADER_HEIGHT = 60;
 
@@ -33,6 +34,7 @@ export const Header = (props: BoxProps) => {
           title={t('common.logoImageAltText')}
         />
       </Link>
+      <PageSelector />
       <LanguageSelector />
     </Flex>
   );

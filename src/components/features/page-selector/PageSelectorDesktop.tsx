@@ -7,16 +7,17 @@ import {
   Button,
   MenuOptionGroup,
 } from '@chakra-ui/react';
-import { LanguageIcon, ChevronDownTrimmedIcon, ChevronUpTrimmedIcon } from '@contentful/f36-icons';
+import { ListBulletedIcon, ChevronDownTrimmedIcon, ChevronUpTrimmedIcon } from '@contentful/f36-icons';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
-export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
-  const { locale, locales } = useRouter();
+export const PageSelectorDesktop = ({ genericPages  }) => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Flex justifyContent="center" alignItems="center">
-      <LanguageIcon width="18px" height="18px" variant="secondary" />
+      <ListBulletedIcon width="18px" height="18px" variant="secondary" />
       <Menu gutter={0}>
         {({ isOpen }) => (
           <>
@@ -38,30 +39,28 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
                   <ChevronDownTrimmedIcon variant="secondary" />
                 )
               }>
-              {localeName(locale)}
+              {t('common.institutionalPages')}
             </MenuButton>
             <MenuList minW={24} p={0}>
               <MenuOptionGroup
-                defaultValue={locale}
                 onChange={value => {
-                  router.push({ pathname: router.pathname, query: router.query }, router.asPath, {
-                    locale: String(value),
-                  });
+                  if (value === '') {}
+                  else {
+                    router.push('/generic/' + value);
+                  }
                 }}>
-                {locales?.map(availableLocale =>
-                  availableLocale === locale ? null : (
+                {genericPages?.map(page =>
                     <MenuItemOption
                       minW={24}
-                      textAlign="center"
+                      textAlign="left"
                       _focus={{ boxShadow: 'none' }}
                       _focusVisible={{ boxShadow: 'outline' }}
                       _hover={{ bg: 'transparent', boxShadow: 'none' }}
                       icon={null}
-                      key={availableLocale}
-                      value={availableLocale}>
-                      {availableLocale}
+                      key={page}
+                      value={page}>
+                      {page}
                     </MenuItemOption>
-                  ),
                 )}
               </MenuOptionGroup>
             </MenuList>

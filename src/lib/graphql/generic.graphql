@@ -1,0 +1,27 @@
+fragment BaseGenericContentFields on GenericContent {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  slug
+  seoFields {
+    ...SeoFields
+  }
+  title
+  contents {
+    json
+  }
+}
+
+fragment GenericContentFields on GenericContent {
+  ...BaseGenericContentFields
+}
+
+query genericContent($slug: String!, $locale: String, $preview: Boolean) {
+  genericContentCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
+    items {
+      ...GenericContentFields
+    }
+  }
+}

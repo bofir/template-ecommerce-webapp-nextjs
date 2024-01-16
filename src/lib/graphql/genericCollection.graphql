@@ -1,0 +1,7 @@
+query genericContentCollection($locale: String, $preview: Boolean) {
+  genericContentCollection(limit: 100, locale: $locale, preview: $preview) {
+    items {
+      ...GenericContentFields
+    }
+  }
+}
