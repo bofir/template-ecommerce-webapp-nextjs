@@ -5,7 +5,7 @@ import { PageSelectorMobile } from './PageSelectorMobile';
 
 export const PageSelector = () => {
 
-  const genericPages = ['prueba', 'otro', 'otra-cosa'];
+  const genericPages = [['prueba', 'Términos y condiciones'], ['otro', 'Política de privacidad'], ['otra-cosa', 'Preguntas frecuentes']];
 
   return genericPages && genericPages.length > 1 ? (
     <>

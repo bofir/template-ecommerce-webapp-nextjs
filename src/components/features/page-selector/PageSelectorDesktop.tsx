@@ -57,9 +57,9 @@ export const PageSelectorDesktop = ({ genericPages  }) => {
                       _focusVisible={{ boxShadow: 'outline' }}
                       _hover={{ bg: 'transparent', boxShadow: 'none' }}
                       icon={null}
-                      key={page}
-                      value={page}>
-                      {page}
+                      key={page[0]}
+                      value={page[0]}>
+                      {page[1]}
                     </MenuItemOption>
                 )}
               </MenuOptionGroup>

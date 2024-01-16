@@ -44,8 +44,8 @@ export const PageSelectorMobile = ({ genericPages }) => {
               }}>
               <option key='' value=''>{t('common.select')}</option>
               {genericPages?.map(page => (
-                <option key={page} value={page}>
-                  {page}
+                <option key={page[0]} value={page[0]}>
+                  {page[1]}
                 </option>
               ))}
             </Select>

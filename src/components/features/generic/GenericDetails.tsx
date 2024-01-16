@@ -16,7 +16,7 @@ export const GenericDetails = ({
   return (
     <Container mt={{ base: 6, lg: 16 }}>
       <Grid templateColumns="repeat(12, 1fr)" gap={{ base: 5, lg: 12 }}>
-        <GridItem colSpan={{ base: 12, lg: 5, xl: 4 }}>
+        <GridItem colSpan={{ base: 12, lg: 10, xl: 8 }}>
           <Box
             width="100%"
             bg={theme.f36.gray100}
