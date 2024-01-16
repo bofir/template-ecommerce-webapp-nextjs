@@ -2,7 +2,7 @@ import { Box, Container, Flex, Grid, GridItem, Heading, Text, useTheme } from '@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 
 import { GenericContentFieldsFragment } from '@src/lib/__generated/sdk';
-import { documentToReactComponents, documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 
 export const GenericDetails = ({
