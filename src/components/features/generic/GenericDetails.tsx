@@ -13,8 +13,6 @@ export const GenericDetails = ({
   const theme = useTheme();
   const inspectorProps = useContentfulInspectorMode({ entryId });
 
-  const rich_text_content = documentToHtmlString(contents.json);
-
   return (
     <Container mt={{ base: 6, lg: 16 }}>
       <Grid templateColumns="repeat(12, 1fr)" gap={{ base: 5, lg: 12 }}>
@@ -30,7 +28,7 @@ export const GenericDetails = ({
             <Heading {...inspectorProps({ fieldId: 'title' })} as="h1" variant="h3">
               {title}
             </Heading>
-            <div dangerouslySetInnerHTML={{__html: rich_text_content}}></div>
+            <div dangerouslySetInnerHTML={{__html: documentToHtmlString(contents.json)}}></div>
 
           </Box>
         </GridItem>
