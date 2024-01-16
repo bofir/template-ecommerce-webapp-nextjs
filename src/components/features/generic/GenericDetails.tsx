@@ -28,7 +28,7 @@ export const GenericDetails = ({
             <Heading {...inspectorProps({ fieldId: 'title' })} as="h1" variant="h3">
               {title}
             </Heading>
-            <div dangerouslySetInnerHTML={{__html: documentToHtmlString(contents.json)}}></div>
+            <div dangerouslySetInnerHTML={{__html: documentToHtmlString(contents?.json)}}></div>
 
           </Box>
         </GridItem>
