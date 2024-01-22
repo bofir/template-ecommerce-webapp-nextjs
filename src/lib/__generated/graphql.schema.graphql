@@ -90,10 +90,12 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  blogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): BlogPostCollection
   componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageLandingCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageLandingCollection
   pageProductCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageProductCollection
+  personCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PersonCollection
 }
 
 enum AssetOrder {
@@ -117,6 +119,150 @@ enum AssetOrder {
   url_DESC
   width_ASC
   width_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/6mnvn3infhdn/content_types/blogPost)
+"""
+type BlogPost implements Entry {
+  author(locale: String, preview: Boolean, where: PersonFilter): Person
+  body(locale: String): BlogPostBody
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): BlogPostDescription
+  heroImage(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): BlogPostLinkingCollections
+  publishDate(locale: String): DateTime
+  slug(locale: String): String
+  sys: Sys!
+  tags(locale: String): [String]
+  title(locale: String): String
+}
+
+type BlogPostBody {
+  json: JSON!
+  links: BlogPostBodyLinks!
+}
+
+type BlogPostBodyAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type BlogPostBodyEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type BlogPostBodyLinks {
+  assets: BlogPostBodyAssets!
+  entries: BlogPostBodyEntries!
+  resources: BlogPostBodyResources!
+}
+
+type BlogPostBodyResources {
+  block: [ResourceLink!]!
+  hyperlink: [ResourceLink!]!
+  inline: [ResourceLink!]!
+}
+
+type BlogPostCollection {
+  items: [BlogPost]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type BlogPostDescription {
+  json: JSON!
+  links: BlogPostDescriptionLinks!
+}
+
+type BlogPostDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type BlogPostDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type BlogPostDescriptionLinks {
+  assets: BlogPostDescriptionAssets!
+  entries: BlogPostDescriptionEntries!
+  resources: BlogPostDescriptionResources!
+}
+
+type BlogPostDescriptionResources {
+  block: [ResourceLink!]!
+  hyperlink: [ResourceLink!]!
+  inline: [ResourceLink!]!
+}
+
+input BlogPostFilter {
+  AND: [BlogPostFilter]
+  OR: [BlogPostFilter]
+  author: cfPersonNestedFilter
+  author_exists: Boolean
+  body_contains: String
+  body_exists: Boolean
+  body_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  heroImage_exists: Boolean
+  publishDate: DateTime
+  publishDate_exists: Boolean
+  publishDate_gt: DateTime
+  publishDate_gte: DateTime
+  publishDate_in: [DateTime]
+  publishDate_lt: DateTime
+  publishDate_lte: DateTime
+  publishDate_not: DateTime
+  publishDate_not_in: [DateTime]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  tags_contains_all: [String]
+  tags_contains_none: [String]
+  tags_contains_some: [String]
+  tags_exists: Boolean
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type BlogPostLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum BlogPostOrder {
+  publishDate_ASC
+  publishDate_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 """
@@ -824,6 +970,176 @@ enum PageProductRelatedProductsCollectionOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/6mnvn3infhdn/content_types/person)
+"""
+type Person implements Entry {
+  company(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  email(locale: String): String
+  facebook(locale: String): String
+  github(locale: String): String
+  image(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): PersonLinkingCollections
+  name(locale: String): String
+  phone(locale: String): String
+  shortBio(locale: String): PersonShortBio
+  sys: Sys!
+  title(locale: String): String
+  twitter(locale: String): String
+}
+
+type PersonCollection {
+  items: [Person]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PersonFilter {
+  AND: [PersonFilter]
+  OR: [PersonFilter]
+  company: String
+  company_contains: String
+  company_exists: Boolean
+  company_in: [String]
+  company_not: String
+  company_not_contains: String
+  company_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  email: String
+  email_contains: String
+  email_exists: Boolean
+  email_in: [String]
+  email_not: String
+  email_not_contains: String
+  email_not_in: [String]
+  facebook: String
+  facebook_contains: String
+  facebook_exists: Boolean
+  facebook_in: [String]
+  facebook_not: String
+  facebook_not_contains: String
+  facebook_not_in: [String]
+  github: String
+  github_contains: String
+  github_exists: Boolean
+  github_in: [String]
+  github_not: String
+  github_not_contains: String
+  github_not_in: [String]
+  image_exists: Boolean
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  phone: String
+  phone_contains: String
+  phone_exists: Boolean
+  phone_in: [String]
+  phone_not: String
+  phone_not_contains: String
+  phone_not_in: [String]
+  shortBio_contains: String
+  shortBio_exists: Boolean
+  shortBio_not_contains: String
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  twitter: String
+  twitter_contains: String
+  twitter_exists: Boolean
+  twitter_in: [String]
+  twitter_not: String
+  twitter_not_contains: String
+  twitter_not_in: [String]
+}
+
+type PersonLinkingCollections {
+  blogPostCollection(limit: Int = 100, locale: String, order: [PersonLinkingCollectionsBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): BlogPostCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PersonLinkingCollectionsBlogPostCollectionOrder {
+  publishDate_ASC
+  publishDate_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum PersonOrder {
+  company_ASC
+  company_DESC
+  email_ASC
+  email_DESC
+  facebook_ASC
+  facebook_DESC
+  github_ASC
+  github_DESC
+  name_ASC
+  name_DESC
+  phone_ASC
+  phone_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  twitter_ASC
+  twitter_DESC
+}
+
+type PersonShortBio {
+  json: JSON!
+  links: PersonShortBioLinks!
+}
+
+type PersonShortBioAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PersonShortBioEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PersonShortBioLinks {
+  assets: PersonShortBioAssets!
+  entries: PersonShortBioEntries!
+  resources: PersonShortBioResources!
+}
+
+type PersonShortBioResources {
+  block: [ResourceLink!]!
+  hyperlink: [ResourceLink!]!
+  inline: [ResourceLink!]!
+}
+
+"""
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
 """
 scalar Quality
@@ -832,6 +1148,8 @@ type Query {
   _node(id: ID!, locale: String, preview: Boolean): _Node
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
+  blogPost(id: String!, locale: String, preview: Boolean): BlogPost
+  blogPostCollection(limit: Int = 100, locale: String, order: [BlogPostOrder], preview: Boolean, skip: Int = 0, where: BlogPostFilter): BlogPostCollection
   componentSeo(id: String!, locale: String, preview: Boolean): ComponentSeo
   componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, where: ComponentSeoFilter): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
@@ -841,6 +1159,8 @@ type Query {
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
   pageProduct(id: String!, locale: String, preview: Boolean): PageProduct
   pageProductCollection(limit: Int = 100, locale: String, order: [PageProductOrder], preview: Boolean, skip: Int = 0, where: PageProductFilter): PageProductCollection
+  person(id: String!, locale: String, preview: Boolean): Person
+  personCollection(limit: Int = 100, locale: String, order: [PersonOrder], preview: Boolean, skip: Int = 0, where: PersonFilter): PersonCollection
 }
 
 type ResourceLink {
@@ -991,4 +1311,71 @@ input cfPageProductNestedFilter {
   slug_not_contains: String
   slug_not_in: [String]
   sys: SysFilter
+}
+
+input cfPersonNestedFilter {
+  AND: [cfPersonNestedFilter]
+  OR: [cfPersonNestedFilter]
+  company: String
+  company_contains: String
+  company_exists: Boolean
+  company_in: [String]
+  company_not: String
+  company_not_contains: String
+  company_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  email: String
+  email_contains: String
+  email_exists: Boolean
+  email_in: [String]
+  email_not: String
+  email_not_contains: String
+  email_not_in: [String]
+  facebook: String
+  facebook_contains: String
+  facebook_exists: Boolean
+  facebook_in: [String]
+  facebook_not: String
+  facebook_not_contains: String
+  facebook_not_in: [String]
+  github: String
+  github_contains: String
+  github_exists: Boolean
+  github_in: [String]
+  github_not: String
+  github_not_contains: String
+  github_not_in: [String]
+  image_exists: Boolean
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  phone: String
+  phone_contains: String
+  phone_exists: Boolean
+  phone_in: [String]
+  phone_not: String
+  phone_not_contains: String
+  phone_not_in: [String]
+  shortBio_contains: String
+  shortBio_exists: Boolean
+  shortBio_not_contains: String
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  twitter: String
+  twitter_contains: String
+  twitter_exists: Boolean
+  twitter_in: [String]
+  twitter_not: String
+  twitter_not_contains: String
+  twitter_not_in: [String]
 }
