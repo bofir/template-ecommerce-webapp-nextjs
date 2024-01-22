@@ -24,11 +24,13 @@ export const Header = (props: BoxProps) => {
       {...props}>
       <Link href="/" title={t('common.homepage')}>
         <Box
+          h='40px'
           display={{ base: 'none', md: 'block', lg: 'block' }}
           as={DesktopLogo}
           title={t('common.logoImageAltText')}
         />
         <Box
+          h='40px'
           display={{ base: 'block', md: 'none', lg: 'none' }}
           as={MobileLogo}
           title={t('common.logoImageAltText')}
