@@ -107,8 +107,10 @@ export const HeroBanner = ({
         gridArea={{ base: '1 / 1 / 2 / 2' }}
         overflow="hidden"
         justifyContent="flex-end"
+        ml={{ base: '10px', md: '100px', lg: '40px' }}
+        mt={{ base: '10px', md: '100px', lg: '180px' }}
         maxHeight={{ base: '20vh', lg: '40vh' }}>
-        <Text color='white'>Bienvenido a StarBien !</Text>
+        <Text color='white'>¡Bienvenido a Starbien !</Text>
         <Text color='#FACC15'>Somos especialistas en tu Bienestar</Text>
         <Text color='white'>Desde citas con los mejores especialistas hasta seguros diseñados para ti</Text>
 {/*
